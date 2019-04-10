@@ -6,7 +6,7 @@ from time import sleep
 # chrome_options.add_argument('--headless')
 # chrome_options.add_argument('--no-sandbox')
 # chrome_options.add_argument('--disable-dev-shm-usage')
-# driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', chrome_options=chrome_options)
+# driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options)
 ## FOR SERVER ##
 
 driver = webdriver.Chrome('./chromedriver')
@@ -17,7 +17,7 @@ def loginUdacity():
     email.send_keys('XXXXXemailXXXXX')
     password = driver.find_element_by_xpath("//input[@type='password']")
     password.send_keys('XXXXXpasswordXXXXX')
-    signin = driver.find_elements_by_xpath("//button[@type='button']")[5]
+    signin = driver.find_elements_by_xpath("//button[@type='button']")[4]
     signin.click()
     print('Login Success!')
 
