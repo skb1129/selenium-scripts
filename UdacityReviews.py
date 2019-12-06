@@ -24,7 +24,7 @@ def loginUdacity():
 def startReviewsQueue():
     driver.get('https://mentor-dashboard.udacity.com/reviews/overview')
     sleep(5)
-    enterQueue = driver.find_element_by_xpath("//button[@type='button']")
+    enterQueue = driver.find_elements_by_xpath("//button[@type='button']")[0]
     if enterQueue.text == "UPDATE OPTIONS":
         refreshQueue()
         return
@@ -38,7 +38,7 @@ def startReviewsQueue():
     sleep(5)
 
 def refreshQueue():
-    refresh = driver.find_elements_by_xpath("//button[@type='button']")[2]
+    refresh = driver.find_elements_by_xpath("//button[@type='button']")[1]
     refresh.click()
     print('Queue Refreshed!')
 
