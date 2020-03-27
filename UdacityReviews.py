@@ -32,7 +32,7 @@ def startReviewsQueue():
     sleep(1)
     keepMyQueueFull = driver.find_elements_by_tag_name("label")[2]
     keepMyQueueFull.click()
-    queueNow = driver.find_elements_by_xpath("//button[@type='button']")[6]
+    queueNow = driver.find_elements_by_xpath("//button[@type='button']")[7]
     queueNow.click()
     print('Queue Started!')
     sleep(5)
