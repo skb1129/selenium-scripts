@@ -14,9 +14,9 @@ def loginUdacity():
     driver.get('https://auth.udacity.com/sign-in?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated')
     sleep(5)
     email = driver.find_element_by_xpath("//input[@type='email']")
-    email.send_keys('XXXXXemailXXXXX')
+    email.send_keys('xxEMAILxx')
     password = driver.find_element_by_xpath("//input[@type='password']")
-    password.send_keys('XXXXXpasswordXXXXX')
+    password.send_keys('xxPASSWORDxx')
     signin = driver.find_elements_by_xpath("//button[@type='button']")[4]
     signin.click()
     print('Login Success!')
