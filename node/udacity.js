@@ -2,16 +2,16 @@ const puppeteer = require("puppeteer");
 
 const headless = false;
 
-async function login(page) {
+async function login(page, credentials) {
   await page.goto(
     "https://auth.udacity.com/sign-in?next=https%3A%2F%2Fmentor-dashboard.udacity.com%2Fqueue%2Foverview",
     { waitUntil: "networkidle0" }
   );
-  await page.evaluate(() => {
-    document.querySelector('input[type="email"]').value = "xxEMAILxx";
-    document.querySelector('input[type="password"]').value = "xxPASSWORDxx";
+  await page.evaluate(({ email, password }) => {
+    document.querySelector('input[type="email"]').value = email;
+    document.querySelector('input[type="password"]').value = password;
     document.querySelectorAll('button[type="button"]')[4].click();
-  });
+  }, credentials);
   await page.waitForNavigation({ waitUntil: "networkidle0" });
 }
 
@@ -34,10 +34,12 @@ async function queue(page) {
   await page.waitFor(1000);
 }
 
-(async () => {
+async function udacity(credentials) {
   const browser = await puppeteer.launch({ headless });
   const page = await browser.newPage();
-  await login(page);
+  await login(page, credentials);
   await queue(page);
   await browser.close();
-})();
+}
+
+module.exports = udacity;
