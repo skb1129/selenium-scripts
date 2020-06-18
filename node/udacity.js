@@ -29,6 +29,7 @@ async function queue(page) {
   if (!toContinue) return;
   await page.evaluate(() => {
     document.querySelectorAll("label")[2].click();
+    document.querySelectorAll('input[role="switch"]').forEach((s) => s.click());
     document.querySelectorAll('button[type="button"]')[7].click();
   });
   await page.waitFor(1000);
