@@ -2,7 +2,7 @@
 
 export $(cat .env | xargs)
 
-ZSH_ENV="~/.zshenv"
+ZSH_ENV=~/.zshenv
 
 # Create ZSH configuration file
 touch $ZSH_ENV
