@@ -25,17 +25,16 @@ echo 'export NVM_DIR="$HOME/.nvm"
 
 # Install latest stable node version
 nvm install --lts
-nvm alias default stable
 
-# Install npm packages
-npm install yarn
+# Install global npm packages
+npm install -g yarn
 
 # Move to downloads
 cd ~/Downloads
 
 # Download and install Google Chrome
 wget https://dl.google.com/chrome/mac/stable/CHFA/googlechrome.dmg
-DRIVE=echo $(hdiutil attach googlechrome.dmg -mountrandom /Volumes/) | awk {'print $NF'}
+DRIVE=$(hdiutil attach googlechrome.dmg -mountrandom /Volumes/ | tail -1 | awk {'print $NF'})
 cp -r $DRIVE/Google\ Chrome.app /Applications/
 hdiutil detach $DRIVE
 
@@ -46,25 +45,25 @@ cp -r Visual\ Studio\ Code.app /Applications/
 
 # Download and install Idea Ultimate
 wget https://download-cf.jetbrains.com/idea/ideaIU-${INTELLIJ_VERSION}.dmg
-DRIVE=echo $(hdiutil attach ideaIU-${INTELLIJ_VERSION}.dmg -mountrandom /Volumes/) | awk {'print $NF'}
+DRIVE=$(hdiutil attach ideaIU-${INTELLIJ_VERSION}.dmg -mountrandom /Volumes/ | tail -1 | awk {'print $NF'})
 cp -r $DRIVE/IntelliJ\ IDEA.app /Applications/
 hdiutil detach $DRIVE
 
 # Download and install WebStorm
 wget https://download-cf.jetbrains.com/webstorm/WebStorm-${INTELLIJ_VERSION}.dmg
-DRIVE=echo $(hdiutil attach WebStorm-${INTELLIJ_VERSION}.dmg -mountrandom /Volumes/) | awk {'print $NF'}
+DRIVE=$(hdiutil attach WebStorm-${INTELLIJ_VERSION}.dmg -mountrandom /Volumes/ | tail -1 | awk {'print $NF'})
 cp -r $DRIVE/WebStorm.app /Applications/
 hdiutil detach $DRIVE
 
 # Download and install PyCharm
 wget https://download-cf.jetbrains.com/python/pycharm-professional-${INTELLIJ_VERSION}.dmg
-DRIVE=echo $(hdiutil attach pycharm-professional-${INTELLIJ_VERSION}.dmg -mountrandom /Volumes/) | awk {'print $NF'}
+DRIVE=$(hdiutil attach pycharm-professional-${INTELLIJ_VERSION}.dmg -mountrandom /Volumes/ | tail -1 | awk {'print $NF'})
 cp -r $DRIVE/PyCharm.app /Applications/
 hdiutil detach $DRIVE
 
 # Download and install IINA
 wget https://dl.iina.io/IINA.v${IINA_VERSION}.dmg
-DRIVE=echo $(hdiutil attach IINA.v${IINA_VERSION}.dmg -mountrandom /Volumes/) | awk {'print $NF'}
+DRIVE=$(hdiutil attach IINA.v${IINA_VERSION}.dmg -mountrandom /Volumes/ | tail -1 | awk {'print $NF'})
 cp -r $DRIVE/IINA.app /Applications/
 hdiutil detach $DRIVE
 
@@ -74,13 +73,13 @@ unzip AppCleaner_${APP_CLEANER_VERSION}.zip
 cp -r AppCleaner.app /Applications/
 
 # Download and install Postman
-wget https://dl.pstmn.io/download/latest/osx
-unzip Postman-osx-*.zip
+wget -O Postman.zip https://dl.pstmn.io/download/latest/osx
+unzip Postman.zip
 cp -r Postman.app /Applications/
 
 # Download and install Docker
 wget https://download.docker.com/mac/stable/Docker.dmg
-DRIVE=echo $(hdiutil attach Docker.dmg -mountrandom /Volumes/) | awk {'print $NF'}
+DRIVE=$(hdiutil attach Docker.dmg -mountrandom /Volumes/ | tail -1 | awk {'print $NF'})
 cp -r $DRIVE/Docker.app /Applications/
 hdiutil detach $DRIVE
 
