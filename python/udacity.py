@@ -17,7 +17,7 @@ def loginUdacity():
     email.send_keys('xxEMAILxx')
     password = driver.find_element_by_xpath("//input[@type='password']")
     password.send_keys('xxPASSWORDxx')
-    signin = driver.find_elements_by_xpath("//button[@type='button']")[4]
+    signin = driver.find_elements_by_xpath("//button[@type='button']")[2]
     signin.click()
     print('Login Success!')
 
@@ -30,7 +30,7 @@ def startReviewsQueue():
         return
     enterQueue.click()
     sleep(1)
-    keepMyQueueFull = driver.find_elements_by_tag_name("label")[2]
+    keepMyQueueFull = driver.find_elements_by_tag_name("label")[6]
     keepMyQueueFull.click()
     switches = driver.find_elements_by_xpath("//input[@role='switch']")
     for switch in switches:

@@ -10,7 +10,7 @@ async function login(page, credentials) {
   await page.evaluate(({ email, password }) => {
     document.querySelector('input[type="email"]').value = email;
     document.querySelector('input[type="password"]').value = password;
-    document.querySelectorAll('button[type="button"]')[4].click();
+    document.querySelectorAll('button[type="button"]')[2].click();
   }, credentials);
   await page.waitForNavigation({ waitUntil: "networkidle0" });
 }
@@ -28,7 +28,7 @@ async function queue(page) {
   await page.waitFor(1000);
   if (!toContinue) return;
   await page.evaluate(() => {
-    document.querySelectorAll("label")[2].click();
+    document.querySelectorAll("label")[6].click();
     document.querySelectorAll('input[role="switch"]').forEach((s) => s.click());
     document.querySelectorAll('button[type="button"]')[7].click();
   });
