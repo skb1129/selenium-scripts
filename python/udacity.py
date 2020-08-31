@@ -30,7 +30,7 @@ def startReviewsQueue():
         return
     enterQueue.click()
     sleep(1)
-    keepMyQueueFull = driver.find_elements_by_tag_name("label")[6]
+    keepMyQueueFull = driver.find_element_by_xpath("//label[@for='queue-volume-max']")
     keepMyQueueFull.click()
     switches = driver.find_elements_by_xpath("//input[@role='switch']")
     for switch in switches:

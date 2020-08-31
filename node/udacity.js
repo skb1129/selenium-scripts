@@ -28,7 +28,7 @@ async function queue(page) {
   await page.waitFor(1000);
   if (!toContinue) return;
   await page.evaluate(() => {
-    document.querySelectorAll("label")[6].click();
+    document.querySelector('label[for="queue-volume-max"]').click();
     document.querySelectorAll('input[role="switch"]').forEach((s) => s.click());
     document.querySelectorAll('button[type="button"]')[7].click();
   });
