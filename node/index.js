@@ -1,3 +1,5 @@
 const udacity = require("./udacity");
 
-udacity({ email: "xxEMAILxx", password: "xxPASSWORDxx" });
+const options = { headless: false }
+
+udacity({ email: "xxEMAILxx", password: "xxPASSWORDxx" }, options);

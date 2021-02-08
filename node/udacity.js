@@ -1,7 +1,5 @@
 const puppeteer = require("puppeteer");
 
-const headless = false;
-
 async function login(page, credentials) {
   await page.goto(
     "https://auth.udacity.com/sign-in?next=https%3A%2F%2Fmentor-dashboard.udacity.com%2Fqueue%2Foverview",
@@ -36,8 +34,8 @@ async function queue(page) {
   await page.waitForTimeout(2000);
 }
 
-async function udacity(credentials) {
-  const browser = await puppeteer.launch({ headless });
+async function udacity(credentials, options = {}) {
+  const browser = await puppeteer.launch(options);
   const page = await browser.newPage();
   await login(page, credentials);
   await queue(page);
