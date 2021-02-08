@@ -7,32 +7,33 @@ async function login(page, credentials) {
     "https://auth.udacity.com/sign-in?next=https%3A%2F%2Fmentor-dashboard.udacity.com%2Fqueue%2Foverview",
     { waitUntil: "networkidle0" }
   );
-  await page.evaluate(({ email, password }) => {
-    document.querySelector('input[id="email"]').value = email;
-    document.querySelector('input[id="revealable-password"]').value = password;
-    document.querySelectorAll('button[type="button"]')[2].click();
-  }, credentials);
+  await page.type("#email", credentials.email);
+  await page.type("#revealable-password", credentials.password);
+  await page.click("button.vds-button--primary");
   await page.waitForNavigation({ waitUntil: "networkidle0" });
 }
 
 async function queue(page) {
-  const toContinue = await page.evaluate(() => {
-    const button = document.querySelectorAll('button[type="button"]')[0];
-    if (button.innerText === "UPDATE OPTIONS") {
-      document.querySelectorAll('button[type="button"]')[1].click();
-      return Promise.resolve(false);
-    }
-    button.click();
-    return Promise.resolve(true);
+  const refresh = await page.evaluate(() => {
+    const button = document.querySelector("button.vds-button--minimal");
+    if (!button) return false;
+    return button.innerText === "UPDATE OPTIONS";
   });
-  await page.waitFor(1000);
-  if (!toContinue) return;
-  await page.evaluate(() => {
-    document.querySelector('label[for="queue-volume-max"]').click();
-    document.querySelectorAll('input[role="switch"]').forEach((s) => s.click());
-    document.querySelectorAll('button[type="button"]')[3].click();
-  });
-  await page.waitFor(1000);
+  if (refresh) {
+    await page.evaluate(() => {
+      document.querySelectorAll("button.vds-button--minimal")[1].click();
+    });
+  } else {
+    await page.click("button.vds-button--primary");
+    await page.waitForTimeout(2000);
+    await page.click('label[for="queue-volume-max"]');
+    await page.evaluate(() => {
+      const switches = document.querySelectorAll('input[role="switch"]');
+      for (let s of switches) s.click();
+    });
+    await page.click("footer > button");
+  }
+  await page.waitForTimeout(2000);
 }
 
 async function udacity(credentials) {
