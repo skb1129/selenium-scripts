@@ -6,7 +6,7 @@ const options = { headless: true, args: ["--no-sandbox"] };
 
 exports.startUdacityQueue = functions
   .runWith({ timeoutSeconds: 120, memory: "1GB" })
-  .pubsub.schedule("0 8 * * *")
+  .pubsub.schedule("0 8,12,16,20 * * *")
   .timeZone("Asia/Kolkata")
   .onRun(() => {
     return udacity(
