@@ -40,6 +40,7 @@ async function udacity(credentials, options = {}) {
   await login(page, credentials);
   await queue(page);
   await browser.close();
+  return "DONE";
 }
 
 module.exports = udacity;
